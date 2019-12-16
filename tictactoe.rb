@@ -25,7 +25,7 @@ class Board
 
   end
 
-  def isplay_board
+  def display_board
     puts "TIC - TAC - TOE"
     puts "(q to quit)"
     puts "- -"*8
@@ -49,6 +49,7 @@ class Board
   end
 
   def validate_move(pos)
+    is_open_slot = false
     if pos == 'q'
       exit
     end
@@ -80,9 +81,8 @@ end
 
 class Game
 
-
-  def initialize
-    @board = Board.new
+  def initialize(board = Board.new)
+    @board = board
     @p1 = Player.new("X", 1)
     @p2 = Player.new("O", 2)
     @currentPlayer = @p1
@@ -109,7 +109,6 @@ class Game
     end
     puts "#{@nextPlayer} wins!"
   end
-
 end
 
 class Player
@@ -126,5 +125,7 @@ class Player
 end
 
 
-game = Game.new
-game.playGame
+if __FILE__ == 'tictactoe.rb'
+  game = Game.new
+  game.playGame
+end
